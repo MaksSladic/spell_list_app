@@ -31,13 +31,22 @@ function login_user()
 		if(login_ok($UserName, $password))
 		{	
 			echo "You have loged in.";
+			$headers = array("alg"=>"HS256","typ"=>"JWT");
+
+			$poizvedba = "SELECT * FROM users WHERE UserName='$UserName'";
+
+        	$payload = mysqli_query($zbirka, $poizvedba);
+
+			$JWT = generate_jwt($headers, $payload);
+						
+			return $JWT;
 		}
 		else
 		{
 			http_response_code(409);	// Conflict
 			error_message("Username or password don't match!");
 		}
-		
+
 	}
 	else
 	{

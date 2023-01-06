@@ -43,7 +43,7 @@ function get_password($UserName)
 
 	$row = mysqli_fetch_array($rezultat, MYSQLI_ASSOC);
 
-	echo $row["password"], "\n";
+	// echo $row["password"], "\n";
 
 	return $row["password"];
 }
@@ -54,7 +54,7 @@ function login_ok($UserName, $password)
 {
 	global $zbirka;
 	// password_check($password);
-	echo $password,"\n";
+	// echo $password,"\n";
 
 	// $poizvedba="SELECT * FROM users WHERE UserName='$UserName' AND password = '$password'";
 
@@ -63,12 +63,12 @@ function login_ok($UserName, $password)
 	// if(mysqli_num_rows(mysqli_query($zbirka, $poizvedba)) > 0)
 	if(password_verify($password, $DATABASEpassword))
 	{
-		echo "ok","\n";
+		// echo "ok","\n";
 		return true;
 	}
 	else
 	{
-		echo "not ok","\n";
+		// echo "not ok","\n";
 		return false;
 	}
 }
@@ -284,7 +284,14 @@ function delete_all_char_of_user($IDofUser)
 // --------------------------------------------------------------------
 // JWT
 
-function generate_jwt($headers, $payload, $secret = 'd4d6d8d10d12d20') {
+function generate_jwt($headers, $payload, $secret = 'd4d6d8d10d12d20') 
+{
+	$payload = mysqli_fetch_array($payload,MYSQLI_ASSOC);
+	$current_time = time()+(60*60*24);
+	$payload['exp'] = $current_time;
+
+	// echo json_encode($payload);
+
 	$headers_encoded = base64url_encode(json_encode($headers));
 	
 	$payload_encoded = base64url_encode(json_encode($payload));
