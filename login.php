@@ -37,6 +37,7 @@ function login_user()
 			http_response_code(409);	// Conflict
 			error_message("Username or password don't match!");
 		}
+		
 	}
 	else
 	{
