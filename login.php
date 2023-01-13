@@ -30,7 +30,7 @@ function login_user()
 			
 		if(login_ok($UserName, $password))
 		{	
-			echo "You have loged in.";
+			// echo "You have loged in.";
 			$headers = array("alg"=>"HS256","typ"=>"JWT");
 
 			$poizvedba = "SELECT * FROM users WHERE UserName='$UserName'";
@@ -38,8 +38,8 @@ function login_user()
         	$payload = mysqli_query($zbirka, $poizvedba);
 
 			$JWT = generate_jwt($headers, $payload);
-						
-			return $JWT;
+			
+			echo $JWT;
 		}
 		else
 		{
