@@ -69,7 +69,6 @@
             </div>
         </div>   
         <center> <h1> Sign up </h1> </center>
-        
         <form onsubmit="adduser(); return false;" id="form">  
             
             <div class="container bg-secondary">   
@@ -83,17 +82,6 @@
             </div>   
         </form> 
 
-        <!-- <form action="../users.php" method="POST">  
-            
-            <div class="container bg-secondary">   
-                <label>Username : </label>   
-                <input type="text" placeholder="Enter Username" name="UserName" required>  
-                <label>Password : </label>   
-                <input type="password" placeholder="Enter Password" name="Password" required>  
-                <button type="submit" class="btn btn-primary border border-dark" style="width:50%">Sign up</button>     
-                <button type="button" class="btn btn-primary border border-dark" style="width:50%"> Cancel</button>   
-            </div>   
-        </form>  -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>    
     </body>     
 </html> 
