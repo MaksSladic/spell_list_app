@@ -76,8 +76,10 @@
                 <input type="text" placeholder="Enter Username" name="UserName" required>  
                 <label>Password : </label>   
                 <input type="password" placeholder="Enter Password" name="Password" required>  
-                <button type="submit" class="btn btn-primary border border-dark" style="width:50%">Sign up</button>     
-                <button type="button" class="btn btn-primary border border-dark" style="width:50%"> Cancel</button>  
+                <button type="submit" class="btn btn-primary border border-dark" style="width:50%">Sign up</button>
+                <!-- <Form action="index.php" method="POST">     
+                    <button type="button" class="btn btn-primary border border-dark" style="width:50%"> Cancel</button>  
+                </Form> -->
                 <div id="response"></div>
             </div>   
         </form> 

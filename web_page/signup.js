@@ -23,7 +23,10 @@ function adduser()
 	{
 		if (this.readyState == 4 && this.status == 201)						// zahteva je bila uspešno poslana, prišel je odgovor 201
 		{
-			document.getElementById("response").innerHTML="Dodajanje uspelo!";
+			document.getElementById("response").innerHTML="Dodajanje uspelo! Po 5 sekundah boste preusmerjeni na Login.";
+			setTimeout(function(){
+                window.location.href = "login.php";
+            }, 5000);
 		}
 		if(this.readyState == 4 && this.status != 201)						// zahteva je bila uspešno poslana, prišel je odgovor, ki ni 201
 		{

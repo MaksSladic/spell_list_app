@@ -25,10 +25,11 @@ function login()
         
 		if (this.readyState == 4 && this.status == 200)		
         {				
-			document.getElementById("response").innerHTML="Logiranje uspelo!";
-            document.getElementById("test").innerHTML=document.cookie;
-            CookieName = document.getElementById("name").value;
-            document.cookie = CookieName + "=" + xmlhttp.responseText;
+			document.getElementById("response").innerHTML="Logiranje uspelo! Po 5 sekundah boste preusmerjeni na Home.";
+            document.cookie = "User=" + xmlhttp.responseText;
+			setTimeout(function(){
+                window.location.href = "index.php";
+            }, 5000);
 		}
 		if(this.readyState == 4 && this.status == 409)						
 		{
@@ -43,6 +44,7 @@ function login()
 	xmlhttp.open("POST", "http://localhost/spell_list_app/login", true);						
 	xmlhttp.send(JSONdata);													
 }
+
 
 
 function deleteAllCookies() {

@@ -2,17 +2,19 @@ RewriteEngine On
 
 RewriteRule ^users/?$ users.php [NC,L]						# če gre za zahtevek na relativni URL '/igralci' ga spremeni v 'igralci.php'
 RewriteRule ^users/(.+)/?$ users.php?UserName=$1 [NC,L] 	# preslika vzorec 'igralci/xxxx' v 'igralci.php?vzdevek=xxxx'
+
 RewriteRule ^characters/?$ characters.php [NC,L]
-
-
 RewriteRule ^characters/(.+)/(.+)/?$ characters.php?CharacterName=$1&Var2=$2 [NC]
 RewriteRule ^characters/(.+)/?$ characters.php?CharacterName=$1 [NC,L]
 
 
 RewriteRule ^spells/?$ spells.php [NC,L]
 RewriteRule ^spells/(.+)/?$ spells.php?SpellVar=$1 [NC,L]
+
 RewriteRule ^login/?$ login.php [NC,L]
 
+RewriteRule ^cookies/?$ cookies.php [NC,L]
+RewriteRule ^cookies/(.+)/?$ cookies.php?JWT=$1 [NC,L]
 
 # Onemogočimo direkten dostop do orodja.php
 <Files tools.php>

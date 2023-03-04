@@ -6,7 +6,7 @@ $zbirka = dbConnect();					// Pridobitev povezave s podatkovno zbirko
 
 header('Content-Type: application/json');	// Nastavimo MIME tip vsebine odgovora
 
-switch($_SERVER["REQUEST_METHOD"])		// Glede na HTTP metodo v zahtevi izberemo ustrezno dejanje nad virom
+switch($_SERVER["REQUEST_METHOD"])		
 {
 	case 'POST':
 		login_user();
