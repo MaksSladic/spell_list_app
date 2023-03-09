@@ -58,12 +58,12 @@ function cookiesExist(){
                     <button type="submit" class="btn btn-primary border border-dark text-center">All spells</button>
                 </Form>
             </div>
-            <div class="col-sm-1 col-md-1 col-lg-1 text-center">
+            <div class="col-sm-2 col-md-2 col-lg-2 text-center">
                 <Form action="../characters.php" method="POST">
                     <button type="submit" class="btn btn-primary border border-dark text-center">My characters</button>
                 </Form>
             </div>
-            <div class="col-sm-1 col-md-1 col-lg-1 offset-8 text-center">
+            <div class="col-sm-1 col-md-1 col-lg-1 offset-7 text-center">
                 <button type="button" class="btn btn-primary border border-dark" onclick="logout()">Logout</button>                
             </div>
             `;
@@ -112,6 +112,6 @@ function deleteAllCookies() {
         var cookie = cookies[i];
         var eqPos = cookie.indexOf("=");
         var name = eqPos > -1 ? cookie.substring(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;";
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/";
     }
 }

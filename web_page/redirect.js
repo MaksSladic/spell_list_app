@@ -51,7 +51,7 @@ function isloggedin(){
         if(this.readyState == 4 && this.status == 409)						// zahteva je bila uspešno poslana, prišel je odgovor, ki ni 201
         {
             console.log("409");
-            window.location.href = "login.php";
+            window.location.href = "../login.php";
         }
     };
     
