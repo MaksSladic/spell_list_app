@@ -39,7 +39,6 @@ function getCookieValue(cookieName){
 
 function cookiesExist(){
     var jwt = getCookieValue("User");
-    console.log(jwt);
 
     var xmlhttp = new XMLHttpRequest();										// ustvarimo HTTP zahtevo
     

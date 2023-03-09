@@ -25,3 +25,4 @@ function JWT($JWT){
         http_response_code(409);
     }
 }
+?>

@@ -16,7 +16,7 @@ function login()
 {
     deleteAllCookies();
 	const data = formToJSON(document.getElementById("form").elements);	
-	var JSONdata = JSON.stringify(data, null, "  ");						
+	var JSONdata = JSON.stringify(data, null, "  ");				
 	
 	var xmlhttp = new XMLHttpRequest();										
 	 
@@ -27,6 +27,7 @@ function login()
         {				
 			document.getElementById("response").innerHTML="Logiranje uspelo! Po 5 sekundah boste preusmerjeni na Home.";
             document.cookie = "User=" + xmlhttp.responseText;
+			document.cookie = "UserName=" + document.getElementById("name").value;
 			setTimeout(function(){
                 window.location.href = "index.php";
             }, 5000);
