@@ -10,9 +10,9 @@ header('Content-Type: application/json');	// Nastavimo MIME tip vsebine odgovora
 switch($_SERVER["REQUEST_METHOD"])		// Glede na HTTP metodo v zahtevi izberemo ustrezno dejanje nad virom
 {
 	case 'GET':
-		if(!empty($_GET["CharacterName"]) && empty($_GET["Var2"]))
+		if(!empty($_GET["CharacterName"]) && !empty($_GET["Var2"]))
 		{
-			get_character_info($_GET["CharacterName"]);		//  characters/CharName/Spells
+			get_character_info($_GET["CharacterName"],$_GET["Var2"]);		//  characters/CharName/Spells
 		}
 		else
         {
@@ -75,16 +75,16 @@ mysqli_close($zbirka);
 
 
 
-function get_character_info($CharacterName)
+function get_character_info($CharacterName, $UserName)
 {
    
     echo $CharacterName,"\n";
     global $zbirka;
     $odgovor = array();
 
-    if(character_exists($CharacterName))
+    if(character_exists($CharacterName, $UserName))
     {
-        $IDchar = get_character_ID($CharacterName);
+        $IDchar = get_character_ID($CharacterName, $UserName);
         
         $poizvedba = "SELECT IDspell FROM spelllist WHERE IDchar = '$IDchar'";
 

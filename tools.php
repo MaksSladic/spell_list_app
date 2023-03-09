@@ -92,12 +92,15 @@ function user_exists($UserName) #igralec_obstaja
 	}	
 }
 
-function character_exists($CharacterName) #igralec_obstaja
+function character_exists($CharacterName, $UserName) 
 {	
 	global $zbirka;
 	$CharacterName=mysqli_escape_string($zbirka, $CharacterName);
+	$UserName=mysqli_escape_string($zbirka, $UserName);
+
+	$UserID = get_user_ID($UserName);
 	
-	$poizvedba="SELECT * FROM characters WHERE CharacterName='$CharacterName'";
+	$poizvedba="SELECT * FROM characters WHERE CharacterName='$CharacterName' AND IDofUser = '$UserID'";
 	
 	if(mysqli_num_rows(mysqli_query($zbirka, $poizvedba)) > 0)
 	{
@@ -147,11 +150,15 @@ function get_characters($IDofUser)
 }
 
 
-function get_character_ID($CharacterName)
+function get_character_ID($CharacterName, $UserName)
 {
     global $zbirka;
+	$CharacterName=mysqli_escape_string($zbirka, $CharacterName);
+	$UserName=mysqli_escape_string($zbirka, $UserName);
 
-    $IDofUser = "SELECT IDchar FROM characters WHERE CharacterName = '$CharacterName'";
+	$UserID = get_user_ID($UserName);
+
+    $IDofUser = "SELECT IDchar FROM characters WHERE CharacterName = '$CharacterName' AND IDofUser = '$UserID'";
 
     $rezultat = mysqli_query($zbirka, $IDofUser);
 

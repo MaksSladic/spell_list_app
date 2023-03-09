@@ -26,10 +26,10 @@ function allCharacters()
 function displayCharacters(podatki)
 {
 	var charactersNUM = podatki.length;
-
+	var i = 1;
 	if(charactersNUM > 1)
 	{
-		for(let i = 1; i < charactersNUM; i++)
+		for(i = 1; i < charactersNUM && i <= 12; i++)
 		{
 			pos = "pos"+i;
 			var fragment = document.createDocumentFragment();
@@ -44,8 +44,10 @@ function displayCharacters(podatki)
 			div.setAttribute("class", "card");
 			img.setAttribute("class", "card-img-top");
 			img.setAttribute("alt", "Card image cap");
-			p.setAttribute("class", "card-text");
+			divCardBody.setAttribute("class", "card-body");
+			p.setAttribute("class", "card-text text-center");
 			p.innerHTML = podatki[i].CharacterName;
+			div.href = "characters.php/?CharacterName="+podatki[i].CharacterName
 
 			// append the elements
 			div.appendChild(img);
@@ -58,4 +60,32 @@ function displayCharacters(podatki)
 			
 		}
 	}
+
+	pos = "pos"+i;
+	var fragment = document.createDocumentFragment();
+	
+	// create the elements
+	const div = document.createElement("div");
+	const img = document.createElement("img");
+	const divCardBody = document.createElement("div");
+	const p = document.createElement("p");
+
+	// set the attributes
+	div.setAttribute("class", "card");
+	img.setAttribute("class", "card-img-top");
+	img.setAttribute("alt", "Card image cap");
+	divCardBody.setAttribute("class", "card-body");
+	p.setAttribute("class", "card-text text-center");
+	p.innerHTML = "Add new";
+
+	// append the elements
+	div.appendChild(img);
+	div.appendChild(divCardBody);
+	divCardBody.appendChild(p);
+
+	fragment.appendChild(div);
+
+	document.getElementById(pos).appendChild(fragment);
+
+
 }
