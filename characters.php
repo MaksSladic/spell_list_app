@@ -78,7 +78,6 @@ mysqli_close($zbirka);
 function get_character_info($CharacterName, $UserName)
 {
    
-    echo $CharacterName,"\n";
     global $zbirka;
     $odgovor = array();
 
@@ -124,30 +123,49 @@ function add_character($CharacterName)
 	
 	$data = json_decode(file_get_contents('php://input'), true);
 	
-	if(isset($data["IDofUser"]))
+	if(isset($data["UserName"]))
 	{
 		// $CharacterName = mysqli_escape_string($zbirka, $data["CharacterName"]);
 		//----------------------------------------------	
-		$IDofUser = mysqli_escape_string($zbirka, $data["IDofUser"]); //TUKEJ POL PRIDE DINAMIČNO SPREMINJANJE GLEDE NA TO V KATEREGA UPORABNIKA SMO PRIJAVLJENI
+		$UserName = mysqli_escape_string($zbirka, $data["UserName"]); //TUKEJ POL PRIDE DINAMIČNO SPREMINJANJE GLEDE NA TO V KATEREGA UPORABNIKA SMO PRIJAVLJENI
         //----------------------------------------------
-
-        $poizvedba="INSERT INTO characters (CharacterName, IDofUser) VALUES ('$CharacterName', '$IDofUser')";
-        
-        if(mysqli_query($zbirka, $poizvedba))
+        if(user_exists($UserName))
         {
-            http_response_code(201);	
-            $odgovor=URL_vira($CharacterName);
-            echo json_encode($odgovor);
+            if(!character_exists($CharacterName, $UserName))
+            {
+                $IDofUser = get_user_ID($UserName);
+
+                $poizvedba="INSERT INTO characters (CharacterName, IDofUser) VALUES ('$CharacterName', '$IDofUser')";
+            
+                if(mysqli_query($zbirka, $poizvedba))
+                {
+                    http_response_code(201);	
+                    $odgovor=URL_vira($CharacterName);
+                    echo json_encode($odgovor);
+                }
+                else
+                {
+                    http_response_code(500);	
+                    
+                    if($DEBUG)
+                    {
+                        pripravi_odgovor_napaka(mysqli_error($zbirka));
+                    }
+                }
+            }
+            else
+            {
+                http_response_code(409);	// Conflict
+			    error_message("Character že obstaja!");
+            }
+            
         }
         else
         {
-            http_response_code(500);	
-            
-            if($DEBUG)
-            {
-                pripravi_odgovor_napaka(mysqli_error($zbirka));
-            }
+            http_response_code(400);	// Bad Request
         }
+
+        
 	}
 	else
 	{

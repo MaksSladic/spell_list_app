@@ -48,7 +48,7 @@ function displayCharacters(podatki)
 			divCardBody.setAttribute("class", "card-body");
 			p.setAttribute("class", "card-text text-center");
 			p.innerHTML = podatki[i].CharacterName;
-			a.href = "character.php/?CharacterName="+podatki[i].CharacterName+"/?UserName="+getCookieValue("UserName");
+			a.href = "character.php/?CharacterName="+podatki[i].CharacterName+"&UserName="+getCookieValue("UserName");
 
 			// append the elements
 			a.appendChild(div);
