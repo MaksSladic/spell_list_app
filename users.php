@@ -120,10 +120,8 @@ function add_user()
 	
 	if(isset($data["UserName"], $data["Password"]))
 	{
-		echo $data["Password"],"\n";
 		$UserName = mysqli_escape_string($zbirka, $data["UserName"]);
 		$password = password_hash(mysqli_escape_string($zbirka, $data["Password"]), PASSWORD_DEFAULT);
-		echo $password,"\n";
 			
 		if(!user_exists($UserName))
 		{	

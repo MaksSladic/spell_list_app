@@ -38,12 +38,13 @@ function allSpells(level)
             try{
                 var SpellList = [];
                 var podatki = JSON.parse(this.responseText);
+                console.log(podatki);
+                console.log(SpellsOfCharacter);
                 for(let i=0;i<podatki.length;i++)
                 {
-                    if(SpellsOfCharacter.includes(podatki[i].SpellName))
+                    if(!SpellsOfCharacter.includes(podatki[i].SpellName))
                     {
                         SpellList.push(podatki[i]);
-                        console.log(podatki[i]);
                     }    
                 }
                 if(SpellList.length==0)
@@ -126,15 +127,15 @@ function prikaziPodatke(odgovorJSON){
         {
             var buttonTd = document.createElement("td");
             var button = document.createElement("button");
-            button.innerHTML = "Delete";
+            button.innerHTML = "Add";
             button.value = odgovorJSON[i]["SpellName"];
-            button.style.color = "red";
+            button.style.color = "green";
             button.style.backgroundColor = "transparent";
             button.style.border = "none";
             button.style.padding = "0";
             button.style.margin = "0";
             button.addEventListener("click", function(event) {
-                RemoveSpell(event.target.value);
+                AddSpell(event.target.value);
               });
             buttonTd.appendChild(button);
             tr.appendChild(buttonTd);
@@ -158,38 +159,40 @@ function prikaziPodatke(odgovorJSON){
     document.getElementById("Tableofspells").appendChild(fragment);	// Fragment dodamo v obstoječo tabelo.
 } 
 
-function CharacterName()
+function AddSpell(SpellName)
 {
     var urlParams = new URLSearchParams(window.location.search);
-
-    var CharacterName = urlParams.get('CharacterName');
-
-    document.getElementById("CharacterName").innerHTML=""+CharacterName;
-}
-
-function UpdateAction()
-{
-    var urlParams = new URLSearchParams(window.location.search);
-    var edit = document.getElementById("EditCharacterButton");
-    var newActionEdit = "../EditCharacter.php/?CharacterID="+IDofCharacter+"&CharacterName="+urlParams.get('CharacterName');
-    edit.action = newActionEdit;
-
-    var addspells = document.getElementById("AddspellsButton");
-    var newActionAdd = "../AllSpellsAdd.php/?UserName="+urlParams.get('UserName')+"&CharacterName="+urlParams.get('CharacterName');
-    addspells.action = newActionAdd;
-}
-
-function RemoveSpell(SpellName)
-{
     var xmlhttp = new XMLHttpRequest();										
-        
-    xmlhttp.onreadystatechange = function()									
-    {
-        if (this.readyState == 4 && this.status == 204)						
-        {
+	 
+	xmlhttp.onreadystatechange = function()									
+	{
+		if (this.readyState == 4 && this.status == 201)						
+		{
             location.reload(true);
         }
     };
-    xmlhttp.open("DELETE", "http://localhost/spell_list_app/characters/"+IDofCharacter+"/"+SpellName, true);						
-    xmlhttp.send();	
+
+    var data = {
+        "UserName":urlParams.get('UserName')
+    };	
+
+    xmlhttp.open("POST", "http://localhost/spell_list_app/characters/"+urlParams.get('CharacterName')+"/"+SpellName, true);						
+	xmlhttp.send(JSON.stringify(data));	
+
+}
+
+
+function ColumnName()
+{
+    var urlParams = new URLSearchParams(window.location.search);
+    var name = document.getElementById("AddTo");
+    name.innerHTML="Add to " + urlParams.get('CharacterName');
+
+    document.getElementById("backbutton").innerHTML="Back to "+urlParams.get('CharacterName');
+}
+
+function backto()
+{
+    var urlParams = new URLSearchParams(window.location.search);
+    location.href="../character.php/?CharacterName="+urlParams.get('CharacterName')+"&UserName="+urlParams.get('UserName')
 }

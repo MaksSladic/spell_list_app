@@ -236,14 +236,14 @@ function spell_exists($SpellName)
 	}	
 }
 
-function character_has_spell($SpellName, $CharacterName)
+function character_has_spell($SpellName, $CharacterName, $UserName)
 {
 	global $zbirka;
 	$SpellName=mysqli_escape_string($zbirka, $SpellName);
 	$CharacterName=mysqli_escape_string($zbirka, $CharacterName);
 
 	$IDspell = get_spell_ID($SpellName);
-	$IDchar = get_character_ID($CharacterName);
+	$IDchar = get_character_ID($CharacterName, $UserName);
 
 	$poizvedba = "SELECT * FROM spelllist WHERE IDspell = '$IDspell' AND IDchar = '$IDchar'";
 

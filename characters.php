@@ -80,10 +80,13 @@ function get_character_info($CharacterName, $UserName)
    
     global $zbirka;
     $odgovor = array();
+    $spells = array();
 
     if(character_exists($CharacterName, $UserName))
     {
         $IDchar = get_character_ID($CharacterName, $UserName);
+
+        $odgovor[0] = $IDchar;
         
         $poizvedba = "SELECT IDspell FROM spelllist WHERE IDchar = '$IDchar'";
 
@@ -94,16 +97,18 @@ function get_character_info($CharacterName, $UserName)
             while($singleSpell=mysqli_fetch_row($IDofSpells))
             {
                 $SpellName = get_spell_name($singleSpell[0]);
-                $odgovor[] = $SpellName;
+                $spells[] = $SpellName;
+                
             }
+            $odgovor[1] = $spells;
         }
         else
         {
-            $odgovor = "Character has no spells.";
+            $odgovor[1] = "Character has no spells.";
         }
 
         http_response_code(200);
-        echo json_encode($odgovor);
+        echo json_encode($odgovor);   
     }
     else
     {
@@ -177,18 +182,18 @@ function add_character($CharacterName)
 function add_spell_to_character($CharacterName, $SpellName)
 {
     global $zbirka, $DEBUG;
+	$data = json_decode(file_get_contents('php://input'), true);
 	
-    if(character_exists($CharacterName))
-    {
-        // $data = json_decode(file_get_contents('php://input'), true);
-	
-        // if(isset($data["SpellName"]))
-        // {
-        //     $SpellName = mysqli_escape_string($zbirka, $data["SpellName"]);
+			
+    if(isset($data["UserName"]))
+    {	
+        $UserName = mysqli_escape_string($zbirka, $data["UserName"]);
 
+        if(character_exists($CharacterName, $UserName))
+        {
             if(spell_exists($SpellName))
             {
-                $IDchar = get_character_ID($CharacterName);
+                $IDchar = get_character_ID($CharacterName,$UserName);
                 $IDspell = get_spell_ID($SpellName);
 
                 $poizvedba="INSERT INTO spelllist (IDspell, IDchar) VALUES ('$IDspell', '$IDchar')";
@@ -213,114 +218,88 @@ function add_spell_to_character($CharacterName, $SpellName)
             {
                 echo "No spell with that name exists";
             }
-        // }
-        // else
-        // {
-        //     http_response_code(400);	// Bad Request
-        // }
-    }
+        }
+        else
+        {
+            echo "No such character exists.";
+        }
+    } 
     else
     {
-        echo "No such character exists.";
+        http_response_code(400);	
+        
     }
+    
+    
 	
 }
 
 
 
-function change_character($CharacterName_old)
+function change_character($CharacterID)
 {
 	global $zbirka, $DEBUG;
 	
 	$data = json_decode(file_get_contents('php://input'), true);
 	
-	if(character_exists($CharacterName_old))
-	{			
-		if(isset($data["CharacterName"]))
-		{	
-			$CharacterName = mysqli_escape_string($zbirka, $data["CharacterName"]);
-			
-			$poizvedba="UPDATE characters SET CharacterName = '$CharacterName' WHERE CharacterName = '$CharacterName_old'";
-			
-			if(mysqli_query($zbirka, $poizvedba))
-			{
-				http_response_code(204);	
-			}
-			else
-			{
-				http_response_code(500);	
 				
-				if($DEBUG)	
-				{
-					error_message(mysqli_error($zbirka));
-				}
-			}
-		}
-		else
-		{
-			http_response_code(400);	
-			
-		}
-	}
-	else
-	{
-		http_response_code(400);	
-		
-	}
-}
-
-function delete_spell_from_character($CharacterName, $SpellName)
-{
-    global $zbirka, $DEBUG;
-
-    // $data = json_decode(file_get_contents('php://input'), true);
-	
-	if(character_exists($CharacterName))
-	{			
-        $IDchar = get_character_ID($CharacterName);
-	
-        if(spell_exists($SpellName))
+    if(isset($data["CharacterName"]))
+    {	
+        $CharacterName = mysqli_escape_string($zbirka, $data["CharacterName"]);
+        
+        $poizvedba="UPDATE characters SET CharacterName = '$CharacterName' WHERE IDchar = '$CharacterID'";
+        
+        if(mysqli_query($zbirka, $poizvedba))
         {
-            $IDspell = get_spell_ID($SpellName);
-            if(character_has_spell($SpellName, $CharacterName))
-            {
-                $poizvedba = "DELETE FROM spelllist WHERE IDchar = '$IDchar' AND IDspell = '$IDspell'";
-                if(mysqli_query($zbirka, $poizvedba))
-                {
-                    http_response_code(204);
-                    echo "Spell deleted!";	
-                }
-                else
-                {
-                    http_response_code(500);	
-                    
-                    if($DEBUG)	
-                    {
-                        error_message(mysqli_error($zbirka));
-                    }
-                }
-            }
-            else
-            {
-                http_response_code(400);
-                echo "Characterd does not have this spell.";
-            }
-            
+            http_response_code(204);	
         }
         else
         {
-            http_response_code(400);
-            echo "No spell by that name.";
+            http_response_code(500);	
+            
+            if($DEBUG)	
+            {
+                error_message(mysqli_error($zbirka));
+            }
         }
-			
-	}
-	else
-	{
-		http_response_code(400);
-        echo "No character by that name.";	
-		
-	}
+    }
+    else
+    {
+        http_response_code(400);	
+        
+    }
+	
+}
 
+function delete_spell_from_character($IDchar, $SpellName)
+{
+    global $zbirka, $DEBUG;
+
+    if(spell_exists($SpellName))
+    {
+        $IDspell = get_spell_ID($SpellName);
+        
+        $poizvedba = "DELETE FROM spelllist WHERE IDchar = '$IDchar' AND IDspell = '$IDspell'";
+        if(mysqli_query($zbirka, $poizvedba))
+        {
+            http_response_code(204);
+            echo "Spell deleted!";	
+        }
+        else
+        {
+            http_response_code(500);	
+            
+            if($DEBUG)	
+            {
+                error_message(mysqli_error($zbirka));
+            }
+        }
+    }
+    else
+    {
+        http_response_code(400);
+        echo "No spell by that name.";
+    }
 
 }
 

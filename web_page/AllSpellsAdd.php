@@ -1,20 +1,17 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <script src="../SpellsNotInCharacter.js"></script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title> character </title>
+        <title> home </title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <script src="../header_for_spells.js"></script>
-        <script src="../redirect.js"></script>
-        <script src="../spellsOfCharacter.js"></script>
-        <script>isloggedin()</script>
         <style>
         button 
         {   
             background-color: #4CAF50;   
-            width: 100%;  
-            color: orange;   
+            width: 100%;     
             padding: 15px;   
             margin: 10px 0px;   
             border: none;   
@@ -42,9 +39,10 @@
             text-decoration: none;
             color: black;
         }
+
         </style>
     </head>
-    <body  onload="allSpells(0);UpdateAction();">
+    <body  onload="allSpells(0)">
         <script>cookiesExist()</script>
         <script>allSpellsOfCharacter()</script>
         <div class="container-fluid">
@@ -55,21 +53,13 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         <div class="row mb-4"></div>
         
-        <div class="container">
-            
-            <div class="card">
-                <img class="card-img-top"  alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text text-center" id="CharacterName"></p>
+        <div class="container"> 
+            <div class="row">
+                <div class="col-sm-1 col-md-1 col-lg-1 text-center">
+                    <button id="backbutton" onclick="backto()" class="btn btn-primary border border-dark text-center"></button>
                 </div>
             </div>
-            <script>CharacterName()</script> 
-            <Form id="EditCharacterButton" action="" method="POST">
-                <button type="submit" class="btn btn-primary border border-dark text-center">Edit character</button>
-            </Form>
-            <Form id="AddspellsButton" action="" method="POST">
-                <button type="submit" class="btn btn-primary border border-dark text-center">Add spells</button>
-            </Form>
+            <div class="row mb-4"></div>
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
                     <button 
@@ -216,13 +206,14 @@
             <table class="table">
                 <thead class="bg-secondary" style="Width:100%">
                     <tr>
-                    <th scope="col"  style="Width:25%">Spell Name</th>
-                    <th scope="col" style="Width:10%">School</th>
-                    <th scope="col" style="Width:10%">Casting time</th>
-                    <th scope="col" style="Width:10%">Range</th>
-                    <th scope="col" style="Width:30%">Duration</th>
-                    <th scope="col" style="Width:10%">Components</th>
-                    <th scope="col" style="Width:5%"></th>
+                        <th scope="col"  style="Width:20%">Spell Name</th>
+                        <th scope="col" style="Width:10%">School</th>
+                        <th scope="col" style="Width:10%">Casting time</th>
+                        <th scope="col" style="Width:10%">Range</th>
+                        <th scope="col" style="Width:25%">Duration</th>
+                        <th scope="col" style="Width:15%">Components</th>
+                        <th id="AddTo" scope="col" style="Width:10%"></th>
+                        <script>ColumnName()</script>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider bg-light" id="Tableofspells">

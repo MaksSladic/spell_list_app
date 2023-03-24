@@ -9,7 +9,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <script src="header.js"></script>
         <script>isloggedin()</script>
-        <script>allCharacters()</script>
+        <!-- <script>allCharacters()</script> -->
         <style>
         button 
         {   
@@ -46,8 +46,7 @@
 
         </style>
     </head>
-    <!-- <body  onload=""> -->
-    <body>
+    <body onload="allCharacters()">
         <script>cookiesExist()</script>
         <div class="container-fluid">
             <div class="row bg-secondary" id="header">
