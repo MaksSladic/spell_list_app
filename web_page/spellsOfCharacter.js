@@ -193,3 +193,22 @@ function RemoveSpell(SpellName)
     xmlhttp.open("DELETE", "http://localhost/spell_list_app/characters/"+IDofCharacter+"/"+SpellName, true);						
     xmlhttp.send();	
 }
+
+function DeleteCharacter()
+{
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function()									
+    {
+        if (this.readyState == 4 && this.status == 204)						
+        {
+            console.log("Character deleted");
+        }
+        else
+        {
+            console.log("Nekej ne dela.");
+        }
+    };
+    xmlhttp.open("DELETE", "http://localhost/spell_list_app/characters/"+IDofCharacter+"/DELETE", true);						
+    xmlhttp.send();	
+}

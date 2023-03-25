@@ -304,42 +304,35 @@ function delete_spell_from_character($IDchar, $SpellName)
 }
 
 
-function delete_character($CharacterName)
+function delete_character($CharacterID)
 {
     global $zbirka, $DEBUG;
 
-    if(character_exists($CharacterName))
-	{			
-        $IDchar = get_character_ID($CharacterName);
-        
-        delete_all_spells_of_char($IDchar);
-
-        $IDchar = mysqli_escape_string($zbirka, $IDchar);
-
-        $poizvedba = "DELETE FROM characters WHERE IDchar = '$IDchar'";
-
-        if(mysqli_query($zbirka, $poizvedba))
-        {
-            http_response_code(204);
-            echo "Character deleted!";	
-        }
-        else
-        {
-            http_response_code(500);	
-            
-            if($DEBUG)	
-            {
-                error_message(mysqli_error($zbirka));
-            }
-        }
 			
-	}
-	else
-	{
-		http_response_code(400);
-        echo "No character by that name.";	
-		
-	}
+    $IDchar = $CharacterID;
+    
+    delete_all_spells_of_char($IDchar);
+
+    $IDchar = mysqli_escape_string($zbirka, $IDchar);
+
+    $poizvedba = "DELETE FROM characters WHERE IDchar = '$IDchar'";
+
+    if(mysqli_query($zbirka, $poizvedba))
+    {
+        http_response_code(204);
+        echo "Character deleted!";	
+    }
+    else
+    {
+        http_response_code(500);	
+        
+        if($DEBUG)	
+        {
+            error_message(mysqli_error($zbirka));
+        }
+    }
+			
+
 }
 
 ?>

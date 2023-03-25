@@ -78,10 +78,3 @@
     </body>
 </html>
 
-
-<!-- <div class="card" >
-    <img class="card-img-top"  alt="Card image cap">
-    <div class="card-body">
-        <p class="card-text">Ecin</p>
-    </div>
-</div> -->

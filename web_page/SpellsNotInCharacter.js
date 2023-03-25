@@ -194,5 +194,5 @@ function ColumnName()
 function backto()
 {
     var urlParams = new URLSearchParams(window.location.search);
-    location.href="../character.php/?CharacterName="+urlParams.get('CharacterName')+"&UserName="+urlParams.get('UserName')
+    location.href="../character.php/?CharacterName="+urlParams.get('CharacterName')+"&UserName="+urlParams.get('UserName');
 }

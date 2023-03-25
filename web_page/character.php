@@ -229,6 +229,9 @@
                 
                 </tbody>
             </table>
+            <Form id="DeleteButton" action="../characters.php">
+                <button type="submit" class="btn btn-danger border border-dark text-center" onclick="DeleteCharacter()">Delete character !</button>
+            </Form>
         </div>
     </body>
 </html>
