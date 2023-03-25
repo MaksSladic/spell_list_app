@@ -130,17 +130,25 @@ function add_character($CharacterName)
 	
 	if(isset($data["UserName"]))
 	{
-		// $CharacterName = mysqli_escape_string($zbirka, $data["CharacterName"]);
-		//----------------------------------------------	
-		$UserName = mysqli_escape_string($zbirka, $data["UserName"]); //TUKEJ POL PRIDE DINAMIČNO SPREMINJANJE GLEDE NA TO V KATEREGA UPORABNIKA SMO PRIJAVLJENI
-        //----------------------------------------------
+			
+		$UserName = mysqli_escape_string($zbirka, $data["UserName"]);
+
         if(user_exists($UserName))
         {
             if(!character_exists($CharacterName, $UserName))
             {
                 $IDofUser = get_user_ID($UserName);
 
-                $poizvedba="INSERT INTO characters (CharacterName, IDofUser) VALUES ('$CharacterName', '$IDofUser')";
+                if(isset($data["Image"]))
+                {
+                    $Image = mysqli_escape_string($zbirka, $data["Image"]);
+                    $poizvedba="INSERT INTO characters (CharacterName, IDofUser, Image) VALUES ('$CharacterName', '$IDofUser', '$Image')";
+                }
+                else
+                {
+                    $poizvedba="INSERT INTO characters (CharacterName, IDofUser) VALUES ('$CharacterName', '$IDofUser')";
+                }
+                
             
                 if(mysqli_query($zbirka, $poizvedba))
                 {

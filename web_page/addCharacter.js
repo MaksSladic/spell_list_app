@@ -10,7 +10,6 @@ function allCharacters()
 		{
             try{
                 var podatki = JSON.parse(this.responseText);
-                console.log(podatki);
 				displayCharacters(podatki);  
             }
             catch(e){
@@ -27,7 +26,7 @@ function displayCharacters(podatki)
 {
 	var charactersNUM = podatki.length;
 	var i = 1;
-	if(charactersNUM > 1)
+	if(podatki[1]!="No characters have been created")
 	{
 		for(i = 1; i < charactersNUM && i <= 12; i++)
 		{
@@ -67,6 +66,7 @@ function displayCharacters(podatki)
 	var fragment = document.createDocumentFragment();
 	
 	// create the elements
+	const a = document.createElement("a");
 	const div = document.createElement("div");
 	const img = document.createElement("img");
 	const divCardBody = document.createElement("div");
@@ -79,13 +79,15 @@ function displayCharacters(podatki)
 	divCardBody.setAttribute("class", "card-body");
 	p.setAttribute("class", "card-text text-center");
 	p.innerHTML = "Add new";
+	a.href = "NewCharacter.php";
 
 	// append the elements
+	a.appendChild(div);
 	div.appendChild(img);
 	div.appendChild(divCardBody);
 	divCardBody.appendChild(p);
 
-	fragment.appendChild(div);
+	fragment.appendChild(a);
 
 	document.getElementById(pos).appendChild(fragment);
 

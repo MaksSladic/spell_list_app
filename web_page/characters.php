@@ -62,12 +62,12 @@
                 <div class="col" id="pos2"></div>
                 <div class="col" id="pos3"></div>
                 <div class="col" id="pos4"></div>
-                <div class="w-100"></div>
+                <div class="w-100 mb-4"></div>
                 <div class="col" id="pos5"></div>
                 <div class="col" id="pos6"></div>
                 <div class="col" id="pos7"></div>
                 <div class="col" id="pos8"></div>
-                <div class="w-100"></div>
+                <div class="w-100 mb-4"></div>
                 <div class="col" id="pos9"></div>
                 <div class="col" id="pos10"></div>
                 <div class="col" id="pos11"></div>
