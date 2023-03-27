@@ -60,7 +60,7 @@
             <label class="form-label" for="form12">Character name</label>
             <input type="text" id="form12" class="form-control" value=""/>
             </div>
-            <br>
+            <!-- <br>
             <div class="form-outline">
                 <label class="form-label" for="cahracterimage">Character image</label>
                 <br>
@@ -68,7 +68,7 @@
             </div>
             <br>
             <img id="image-preview">
-            <br>
+            <br> -->
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-1 col-md-1 col-lg-1 text-center">

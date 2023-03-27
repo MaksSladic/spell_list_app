@@ -36,14 +36,14 @@ function displayCharacters(podatki)
 			// create the elements
 			const a = document.createElement("a");
 			const div = document.createElement("div");
-			const img = document.createElement("img");
+			// const img = document.createElement("img");
 			const divCardBody = document.createElement("div");
 			const p = document.createElement("p");
 
 			// set the attributes
 			div.setAttribute("class", "card");
-			img.setAttribute("class", "card-img-top");
-			img.setAttribute("alt", "Card image cap");
+			// img.setAttribute("class", "card-img-top");
+			// img.setAttribute("alt", "Card image cap");
 			divCardBody.setAttribute("class", "card-body");
 			p.setAttribute("class", "card-text text-center");
 			p.innerHTML = podatki[i].CharacterName;
@@ -51,7 +51,7 @@ function displayCharacters(podatki)
 
 			// append the elements
 			a.appendChild(div);
-			div.appendChild(img);
+			// div.appendChild(img);
 			div.appendChild(divCardBody);
 			divCardBody.appendChild(p);
 
@@ -68,14 +68,14 @@ function displayCharacters(podatki)
 	// create the elements
 	const a = document.createElement("a");
 	const div = document.createElement("div");
-	const img = document.createElement("img");
+	// const img = document.createElement("img");
 	const divCardBody = document.createElement("div");
 	const p = document.createElement("p");
 
 	// set the attributes
 	div.setAttribute("class", "card");
-	img.setAttribute("class", "card-img-top");
-	img.setAttribute("alt", "Card image cap");
+	// img.setAttribute("class", "card-img-top");
+	// img.setAttribute("alt", "Card image cap");
 	divCardBody.setAttribute("class", "card-body");
 	p.setAttribute("class", "card-text text-center");
 	p.innerHTML = "Add new";
@@ -83,7 +83,7 @@ function displayCharacters(podatki)
 
 	// append the elements
 	a.appendChild(div);
-	div.appendChild(img);
+	// div.appendChild(img);
 	div.appendChild(divCardBody);
 	divCardBody.appendChild(p);
 

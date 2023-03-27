@@ -13,9 +13,12 @@ function allSpellsOfCharacter()
 		if (this.readyState == 4 && this.status == 200)						// zahteva je bila uspešno poslana, prišel je odgovor 201
 		{
             try{
+                console.log(this.responseText);
                 odgovor = JSON.parse(this.responseText);
+                console.log(odgovor);
                 SpellsOfCharacter = odgovor[1];
                 IDofCharacter = odgovor[0];
+                
             }
             catch(e){
                 console.log("Napaka pri razčlenjevanju podatkov");

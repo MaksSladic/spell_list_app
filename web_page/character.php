@@ -58,7 +58,7 @@
         <div class="container">
             
             <div class="card">
-                <img class="card-img-top"  alt="Card image cap">
+                <!-- <img class="card-img-top"  alt="Card image cap"> -->
                 <div class="card-body">
                     <p class="card-text text-center" id="CharacterName"></p>
                 </div>

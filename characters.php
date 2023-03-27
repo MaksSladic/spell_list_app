@@ -139,16 +139,17 @@ function add_character($CharacterName)
             {
                 $IDofUser = get_user_ID($UserName);
 
-                if(isset($data["Image"]))
-                {
-                    $Image = mysqli_escape_string($zbirka, $data["Image"]);
-                    $poizvedba="INSERT INTO characters (CharacterName, IDofUser, Image) VALUES ('$CharacterName', '$IDofUser', '$Image')";
-                }
-                else
-                {
-                    $poizvedba="INSERT INTO characters (CharacterName, IDofUser) VALUES ('$CharacterName', '$IDofUser')";
-                }
-                
+                // if(isset($data["Image"]))
+                // {
+                //     $Image = mysqli_escape_string($zbirka, $data["Image"]);
+                //     $poizvedba="INSERT INTO characters (CharacterName, IDofUser, Image) VALUES ('$CharacterName', '$IDofUser', '$Image')";
+                // }
+                // else
+                // {
+                //     $poizvedba="INSERT INTO characters (CharacterName, IDofUser) VALUES ('$CharacterName', '$IDofUser')";
+                // }
+                $poizvedba="INSERT INTO characters (CharacterName, IDofUser) VALUES ('$CharacterName', '$IDofUser')";
+
             
                 if(mysqli_query($zbirka, $poizvedba))
                 {
@@ -254,8 +255,19 @@ function change_character($CharacterID)
     if(isset($data["CharacterName"]))
     {	
         $CharacterName = mysqli_escape_string($zbirka, $data["CharacterName"]);
-        
+
+        // if(isset($data["Image"]))
+        // {
+        //     $Image = mysqli_escape_string($zbirka, $data["Image"]);
+        //     $poizvedba="UPDATE characters SET CharacterName = '$CharacterName', Image = '$Image' WHERE IDchar = '$CharacterID'";
+        //     }
+        // else
+        // {
+        //     $poizvedba="UPDATE characters SET CharacterName = '$CharacterName' WHERE IDchar = '$CharacterID'";
+        // }
         $poizvedba="UPDATE characters SET CharacterName = '$CharacterName' WHERE IDchar = '$CharacterID'";
+
+        
         
         if(mysqli_query($zbirka, $poizvedba))
         {
