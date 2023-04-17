@@ -56,7 +56,8 @@
         <div class="container"> 
             <div class="row">
                 <div class="col-sm-1 col-md-1 col-lg-1 text-center">
-                    <button id="backbutton" onclick="backto()" class="btn btn-primary border border-dark text-center"></button>
+                    <!-- <button id="backbutton" onclick="backto()" class="btn btn-primary border border-dark text-center"></button> -->
+                    <button id="backbutton" onclick="history.back()" class="btn btn-primary border border-dark text-center"></button>
                 </div>
             </div>
             <div class="row mb-4"></div>

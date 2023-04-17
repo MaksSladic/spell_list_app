@@ -44,9 +44,9 @@
         }
         </style>
     </head>
-    <body  onload="allSpells(0);UpdateAction();">
+    <body  onload="allSpellsOfCharacter();allSpells(0);">
         <script>cookiesExist()</script>
-        <script>allSpellsOfCharacter()</script>
+        <!-- <script>allSpellsOfCharacter()</script> -->
         <div class="container-fluid">
             <div class="row bg-secondary" id="header">
                 

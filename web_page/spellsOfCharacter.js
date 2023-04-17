@@ -18,7 +18,8 @@ function allSpellsOfCharacter()
                 console.log(odgovor);
                 SpellsOfCharacter = odgovor[1];
                 IDofCharacter = odgovor[0];
-                
+                console.log("ID: ",IDofCharacter);
+                UpdateAction();
             }
             catch(e){
                 console.log("Napaka pri razčlenjevanju podatkov");
