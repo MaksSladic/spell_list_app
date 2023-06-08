@@ -4,9 +4,9 @@ function allCharacters()
 	
 	var user = getCookieValue("UserName");
 	 
-	xmlhttp.onreadystatechange = function()									// določimo odziv v primeru različnih razpletov komunikacije
+	xmlhttp.onreadystatechange = function()									
 	{
-		if (this.readyState == 4 && this.status == 200)						// zahteva je bila uspešno poslana, prišel je odgovor 201
+		if (this.readyState == 4 && this.status == 200)						
 		{
             try{
                 var podatki = JSON.parse(this.responseText);
@@ -18,8 +18,8 @@ function allCharacters()
 		}
 	};
 	 
-	xmlhttp.open("GET", "http://localhost/spell_list_app/users/"+user, true);							// določimo metodo in URL zahteve, izberemo asinhrono zahtevo (true)
-	xmlhttp.send();													// priložimo podatke in izvedemo zahtevo
+	xmlhttp.open("GET", "http://localhost/spell_list_app/users/"+user, true);						
+	xmlhttp.send();													
 }
 
 function displayCharacters(podatki)
@@ -65,14 +65,13 @@ function displayCharacters(podatki)
 	pos = "pos"+i;
 	var fragment = document.createDocumentFragment();
 	
-	// create the elements
+	
 	const a = document.createElement("a");
 	const div = document.createElement("div");
 	// const img = document.createElement("img");
 	const divCardBody = document.createElement("div");
 	const p = document.createElement("p");
 
-	// set the attributes
 	div.setAttribute("class", "card");
 	// img.setAttribute("class", "card-img-top");
 	// img.setAttribute("alt", "Card image cap");
@@ -81,7 +80,6 @@ function displayCharacters(podatki)
 	p.innerHTML = "Add new";
 	a.href = "NewCharacter.php";
 
-	// append the elements
 	a.appendChild(div);
 	// div.appendChild(img);
 	div.appendChild(divCardBody);

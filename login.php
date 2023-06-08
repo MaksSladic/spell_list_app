@@ -2,9 +2,9 @@
 $DEBUG = true;							
 include("tools.php"); 					
 
-$zbirka = dbConnect();					// Pridobitev povezave s podatkovno zbirko
+$zbirka = dbConnect();					
 
-header('Content-Type: application/json');	// Nastavimo MIME tip vsebine odgovora
+header('Content-Type: application/json');	
 
 switch($_SERVER["REQUEST_METHOD"])		
 {
@@ -13,7 +13,7 @@ switch($_SERVER["REQUEST_METHOD"])
         break;
 		
 	default:
-		http_response_code(405);		//Če naredimo zahtevo s katero koli drugo metodo je to 'Method Not Allowed'
+		http_response_code(405);		
 		break;
 }
 
@@ -43,13 +43,13 @@ function login_user()
 		}
 		else
 		{
-			http_response_code(409);	// Conflict
+			http_response_code(409);	
 			error_message("Username or password don't match!");
 		}
 
 	}
 	else
 	{
-		http_response_code(400);	// Bad Request
+		http_response_code(400);	
 	}
 }

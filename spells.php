@@ -2,9 +2,9 @@
 $DEBUG = true;							
 include("tools.php"); 					
 
-$zbirka = dbConnect();					// Pridobitev povezave s podatkovno zbirko
+$zbirka = dbConnect();					
 
-header('Content-Type: application/json');	// Nastavimo MIME tip vsebine odgovora
+header('Content-Type: application/json');	
 
 switch($_SERVER["REQUEST_METHOD"])		// Glede na HTTP metodo v zahtevi izberemo ustrezno dejanje nad virom
 {
@@ -33,7 +33,7 @@ switch($_SERVER["REQUEST_METHOD"])		// Glede na HTTP metodo v zahtevi izberemo u
 
 		
 	default:
-		http_response_code(405);		//Če naredimo zahtevo s katero koli drugo metodo je to 'Method Not Allowed'
+		http_response_code(405);		
 		break;
 }
 
@@ -120,15 +120,15 @@ function add_new_spell()
 			
 			if(mysqli_query($zbirka, $poizvedba))
 			{
-				http_response_code(201);	// Created
+				http_response_code(201);	
 				$odgovor=URL_vira($SpellName);
 				echo json_encode($odgovor);
 			}
 			else
 			{
-				http_response_code(500);	// Internal Server Error (ni nujno vedno streznik kriv!)
+				http_response_code(500);	
 				
-				if($DEBUG)	//Pozor: vračanje podatkov o napaki na strežniku je varnostno tveganje!
+				if($DEBUG)	
 				{
 					pripravi_odgovor_napaka(mysqli_error($zbirka));
 				}
@@ -136,13 +136,13 @@ function add_new_spell()
 		}
 		else
 		{
-			http_response_code(409);	// Conflict
+			http_response_code(409);	
 			error_message("Spell already exists!");
 		}
 	}
 	else
 	{
-		http_response_code(400);	// Bad Request
+		http_response_code(400);	
 	}
 
 }

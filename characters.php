@@ -3,16 +3,16 @@ $DEBUG = true;
 include("tools.php");
 
 
-$zbirka = dbConnect();					// Pridobitev povezave s podatkovno zbirko
+$zbirka = dbConnect();					
 
-header('Content-Type: application/json');	// Nastavimo MIME tip vsebine odgovora
+header('Content-Type: application/json');	
 
 switch($_SERVER["REQUEST_METHOD"])		// Glede na HTTP metodo v zahtevi izberemo ustrezno dejanje nad virom
 {
 	case 'GET':
 		if(!empty($_GET["CharacterName"]) && !empty($_GET["Var2"]))
 		{
-			get_character_info($_GET["CharacterName"],$_GET["Var2"]);		//  characters/CharName/Spells
+			get_character_info($_GET["CharacterName"],$_GET["Var2"]);		
 		}
 		else
         {
@@ -64,7 +64,7 @@ switch($_SERVER["REQUEST_METHOD"])		// Glede na HTTP metodo v zahtevi izberemo u
 
 
 	default:
-		http_response_code(405);		//Če naredimo zahtevo s katero koli drugo metodo je to 'Method Not Allowed'
+		http_response_code(405);		
 		break;
 }
 
@@ -169,21 +169,21 @@ function add_character($CharacterName)
             }
             else
             {
-                http_response_code(409);	// Conflict
+                http_response_code(409);	
 			    error_message("Character že obstaja!");
             }
             
         }
         else
         {
-            http_response_code(400);	// Bad Request
+            http_response_code(400);	
         }
 
         
 	}
 	else
 	{
-        http_response_code(400);	// Bad Request
+        http_response_code(400);	
 	}
 }
 
