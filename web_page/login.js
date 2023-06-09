@@ -25,12 +25,12 @@ function login()
         
 		if (this.readyState == 4 && this.status == 200)		
         {				
-			document.getElementById("response").innerHTML="Logiranje uspelo! Po 5 sekundah boste preusmerjeni na Home.";
+			document.getElementById("response").innerHTML="Logiranje uspelo! Po 2 sekundah boste preusmerjeni na Home.";
             document.cookie = "User=" + xmlhttp.responseText+"; path=/";
 			document.cookie = "UserName=" + document.getElementById("name").value+"; path=/";
 			setTimeout(function(){
                 window.location.href = "index.php";
-            }, 5000);
+            }, 2000);
 		}
 		if(this.readyState == 4 && this.status == 409)						
 		{
